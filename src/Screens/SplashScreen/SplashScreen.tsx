@@ -1,4 +1,4 @@
-import { styles } from './style';
+import {styles} from './style';
 
 import React, {useEffect} from 'react';
 import {View, Image} from 'react-native';
