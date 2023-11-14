@@ -21,7 +21,7 @@ export const Home = () => {
       <View style={styles.optionsBox}>
         <TouchableOpacity
           style={styles.buttonGreen}
-          onPress={() => navigation.navigate('SignUp')}>
+          onPress={() => navigation.navigate('SpaMenu')}>
           <Text style={styles.textButtons}>Menu do SPA</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -31,7 +31,7 @@ export const Home = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttonGreen}
-          onPress={() => navigation.navigate('SignIn')}>
+          onPress={() => navigation.navigate('SignUp')}>
           <Text style={styles.textButtons}>Consulta Dermatologista</Text>
         </TouchableOpacity>
       </View>

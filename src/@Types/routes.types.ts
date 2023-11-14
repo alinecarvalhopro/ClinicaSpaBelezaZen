@@ -3,4 +3,5 @@ type RootStackParamList = {
     Home: undefined;
     SignIn: undefined;
     SignUp: undefined;
+    SpaMenu: undefined;
   };
