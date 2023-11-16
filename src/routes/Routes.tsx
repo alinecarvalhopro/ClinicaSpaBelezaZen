@@ -14,7 +14,6 @@ import {SpaMenu} from '../Screens/SpaMenu/SpaMenu';
 import {Update} from '../Screens/Update/Update';
 import {Schedules} from '../Screens/Schedules/Schedules';
 
-
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +27,7 @@ const MenuTabs = () => {
         tabBarActiveTintColor: Colors.blue,
       }}>
       <Tab.Screen
-        name="Home"
+        name="HomeTab"
         component={Home}
         options={{
           tabBarIcon: ({color, size}) => {
@@ -80,8 +79,8 @@ export const Routes = () => {
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Home" component={MenuTabs} />
-      <Stack.Screen name="SpaMenu" component={SpaMenu} />
-      <Stack.Screen name="Schedules" component={Schedules} />
+      {/* <Stack.Screen name="SpaMenu" component={SpaMenu} />
+      <Stack.Screen name="Schedules" component={Schedules} /> */}
     </Stack.Navigator>
   );
 };

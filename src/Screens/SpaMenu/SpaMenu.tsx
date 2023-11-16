@@ -13,7 +13,7 @@ export const SpaMenu = () => {
   return (
     <View style={styles.spaMenuContainer}>
       <View style={styles.spaMenuHeader}>
-      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Image source={require('../../assets/images/third-logo.png')} />
         </TouchableOpacity>
       </View>

@@ -14,6 +14,11 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
+
+import {verifyErroCode} from '../../Error/error';
+
 export const SignUp = () => {
   const navigation: NativeStackNavigationProp<RootStackParamList> =
     useNavigation();
@@ -23,10 +28,34 @@ export const SignUp = () => {
   const [isWhatsApp, setIsWhatsApp] = useState(false);
   const [password, setPassword] = useState('');
 
+  const signUp = async () => {
+    await auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(async userCredential => {
+        navigation.navigate('SignIn');
+
+        const {uid} = userCredential.user;
+        await database().ref(`users/${uid}`).set({
+          name: name,
+          phoneNumber: phoneNumber,
+          isWhatsApp: isWhatsApp,
+        });
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        let errorMessage = verifyErroCode(errorCode);
+
+        if (errorMessage == null) {
+          errorMessage = error.message;
+        }
+        console.log(errorMessage);
+      });
+  };
+
   return (
     <View style={styles.registerContainer}>
       <Image
-      style={styles.logo}
+        style={styles.logo}
         source={require('../../assets/images/second-logo.png')}
       />
       <View style={styles.registerBox}>
@@ -63,7 +92,7 @@ export const SignUp = () => {
           value={password}
           onChangeText={setPassword}
         />
-        <TouchableOpacity style={styles.registerButton}>
+        <TouchableOpacity style={styles.registerButton} onPress={signUp}>
           <Text style={styles.textRegisterButton}>Enviar</Text>
         </TouchableOpacity>
         <Text style={styles.detailText}>Já possui cadastro?</Text>

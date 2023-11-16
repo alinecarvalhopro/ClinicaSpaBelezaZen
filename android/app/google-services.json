@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "563859578506",
+    "project_id": "clinica-spa-beleza-zen",
+    "storage_bucket": "clinica-spa-beleza-zen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563859578506:android:f33b1a4b44aa4a5bf35773",
+        "android_client_info": {
+          "package_name": "com.clinicaspabelezazen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfv14zfkFmf4KO6MM_cWcXDn0efZYrMFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
