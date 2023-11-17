@@ -14,6 +14,10 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
+import auth from '@react-native-firebase/auth';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export const Update = () => {
   const navigation: NativeStackNavigationProp<RootStackParamList> =
     useNavigation();
@@ -22,6 +26,18 @@ export const Update = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isWhatsApp, setIsWhatsApp] = useState(false);
   const [password, setPassword] = useState('');
+
+  const logout = async () => {
+    try {
+      await auth().signOut();
+
+      await AsyncStorage.removeItem('@CLINICASPABELEZAZEN:USERID');
+
+      navigation.navigate('SignIn');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <View style={styles.updateContainer}>
@@ -76,7 +92,7 @@ export const Update = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.signOutDeleteAccountButton}
-            onPress={() => navigation.navigate('SignIn')}>
+            onPress={logout}>
             <Text style={styles.textSignOutDeleteAccountButton}>Sair</Text>
           </TouchableOpacity>
         </View>

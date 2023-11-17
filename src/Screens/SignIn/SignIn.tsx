@@ -26,11 +26,11 @@ export const SignIn = () => {
       );
       const {user} = userCredential;
 
-      await AsyncStorage.setItem('@MySuperStore:key', user.uid);
+      await AsyncStorage.setItem('@CLINICASPABELEZAZEN:USERID', user.uid);
 
       navigation.navigate('Home');
     } catch (error) {
-      console.error('Erro ao fazer login:', error);
+      console.error(error);
     }
   };
 
