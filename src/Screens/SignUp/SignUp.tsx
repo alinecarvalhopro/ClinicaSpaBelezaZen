@@ -63,18 +63,21 @@ export const SignUp = () => {
         <TextInput
           style={styles.textInput}
           placeholder="Digite aqui o seu nome"
+          placeholderTextColor={Colors.grey100}
           value={name}
           onChangeText={setName}
         />
         <TextInput
           style={styles.textInput}
           placeholder="Digite aqui o seu e-mail"
+          placeholderTextColor={Colors.grey100}
           value={email}
           onChangeText={setEmail}
         />
         <TextInput
           style={styles.textInput}
           placeholder="Digite aqui o seu telefone"
+          placeholderTextColor={Colors.grey100}
           value={phoneNumber}
           onChangeText={setPhoneNumber}
         />
@@ -89,6 +92,7 @@ export const SignUp = () => {
         <TextInput
           style={styles.textInput}
           placeholder="Digite aqui a sua senha"
+          placeholderTextColor={Colors.grey100}
           value={password}
           onChangeText={setPassword}
         />

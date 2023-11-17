@@ -1,4 +1,5 @@
 import {styles} from './style';
+import {Colors} from '../../Styles/Theme/Colors/Colors';
 
 import React, {useState} from 'react';
 import {Text, TouchableOpacity, View, Image, TextInput} from 'react-native';
@@ -6,12 +7,33 @@ import {Text, TouchableOpacity, View, Image, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
+import auth from '@react-native-firebase/auth';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigation: NativeStackNavigationProp<RootStackParamList> =
     useNavigation();
+
+  const login = async () => {
+    try {
+      const userCredential = await auth().signInWithEmailAndPassword(
+        email,
+        password,
+      );
+      const {user} = userCredential;
+
+      await AsyncStorage.setItem('@MySuperStore:key', user.uid);
+
+      navigation.navigate('Home');
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+    }
+  };
+
   return (
     <View style={styles.loginContainer}>
       <Image
@@ -23,16 +45,18 @@ export const SignIn = () => {
         <TextInput
           style={styles.textInput}
           placeholder="Digite aqui o seu e-mail"
+          placeholderTextColor={Colors.grey100}
           value={email}
           onChangeText={setEmail}
         />
         <TextInput
           style={styles.textInput}
           placeholder="Digite aqui a sua senha"
+          placeholderTextColor={Colors.grey100}
           value={password}
           onChangeText={setPassword}
         />
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={login}>
           <Text style={styles.textLoginButton}>Entrar</Text>
         </TouchableOpacity>
         <Text style={styles.detailText}>Ainda não tem cadastro?</Text>
