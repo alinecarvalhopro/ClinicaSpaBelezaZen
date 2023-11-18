@@ -7,7 +7,7 @@ import {Text, TouchableOpacity, View, Image, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import auth from '@react-native-firebase/auth';
+import firebase from '../../Firebase/firebaseConfigs';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -20,15 +20,17 @@ export const SignIn = () => {
 
   const login = async () => {
     try {
-      const userCredential = await auth().signInWithEmailAndPassword(
-        email,
-        password,
-      );
+      const userCredential = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
       const {user} = userCredential;
 
       await AsyncStorage.setItem('@CLINICASPABELEZAZEN:USERID', user.uid);
 
       navigation.navigate('Home');
+
+      setEmail('');
+      setPassword('');
     } catch (error) {
       console.error(error);
     }

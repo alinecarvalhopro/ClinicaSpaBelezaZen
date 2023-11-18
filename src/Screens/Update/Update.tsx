@@ -14,7 +14,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import auth from '@react-native-firebase/auth';
+import firebase from '../../Firebase/firebaseConfigs';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -29,7 +29,7 @@ export const Update = () => {
 
   const logout = async () => {
     try {
-      await auth().signOut();
+      await firebase.auth().signOut();
 
       await AsyncStorage.removeItem('@CLINICASPABELEZAZEN:USERID');
 

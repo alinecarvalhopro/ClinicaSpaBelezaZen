@@ -14,8 +14,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import auth from '@react-native-firebase/auth';
-import database from '@react-native-firebase/database';
+import firebase from '../../Firebase/firebaseConfigs';
 
 import {verifyErroCode} from '../../Error/error';
 
@@ -29,17 +28,20 @@ export const SignUp = () => {
   const [password, setPassword] = useState('');
 
   const signUp = async () => {
-    await auth()
+    await firebase
+      .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(async userCredential => {
+        await firebase
+          .database()
+          .ref('users')
+          .child(userCredential.user.uid)
+          .set({
+            name: name,
+            phoneNumber: phoneNumber,
+            isWhatsApp: isWhatsApp,
+          });
         navigation.navigate('SignIn');
-
-        const {uid} = userCredential.user;
-        await database().ref(`users/${uid}`).set({
-          name: name,
-          phoneNumber: phoneNumber,
-          isWhatsApp: isWhatsApp,
-        });
       })
       .catch(error => {
         const errorCode = error.code;
