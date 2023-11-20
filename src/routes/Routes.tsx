@@ -12,8 +12,8 @@ import {SignIn} from '../Screens/SignIn/SignIn';
 import {SignUp} from '../Screens/SignUp/SignUp';
 import {SpaMenu} from '../Screens/SpaMenu/SpaMenu';
 import {Update} from '../Screens/Update/Update';
-import {Schedules} from '../Screens/Schedules/Schedules';
-import { RecoverPassword } from '../Screens/RecoverPassword/RecoverPassword';
+import {RecoverPassword} from '../Screens/RecoverPassword/RecoverPassword';
+import {AppointmentScheduling} from '../Screens/AppointmentScheduling/AppointmentScheduling';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,8 +46,8 @@ const MenuTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Schedules"
-        component={Schedules}
+        name="AppointmentScheduling"
+        component={AppointmentScheduling}
         options={{
           tabBarIcon: ({color, size}) => {
             return (
@@ -81,8 +81,6 @@ export const Routes = () => {
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Home" component={MenuTabs} />
       <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
-      {/* <Stack.Screen name="SpaMenu" component={SpaMenu} />
-      <Stack.Screen name="Schedules" component={Schedules} /> */}
     </Stack.Navigator>
   );
 };

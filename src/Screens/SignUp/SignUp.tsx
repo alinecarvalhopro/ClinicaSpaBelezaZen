@@ -18,8 +18,6 @@ import firebase from '../../Firebase/firebaseConfigs';
 
 import {verifyErroCode} from '../../Error/error';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 export const SignUp = () => {
   const navigation: NativeStackNavigationProp<RootStackParamList> =
     useNavigation();

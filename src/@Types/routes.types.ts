@@ -5,6 +5,6 @@ type RootStackParamList = {
     SignUp: undefined;
     Update: undefined;
     SpaMenu: undefined;
-    Schedules: undefined;
     RecoverPassword: undefined;
+    AppointmentScheduling: undefined;
   };

@@ -5,6 +5,7 @@ import {View, Image, Text, TouchableOpacity} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
 import ListServicesSpa from './components/ListServicesSpa/ListServicesSpa';
 
 export const SpaMenu = () => {
@@ -29,8 +30,7 @@ export const SpaMenu = () => {
       <ListServicesSpa />
       <View style={styles.appointmentInfoBox}>
         <Text style={styles.appointmentInfoText}>
-          Agendamentos do SPA são feitos exclusivamente pelo telefone ou
-          whatsApp
+          Agendamentos feitos exclusivamente por telefone ou whatsApp
         </Text>
         <Text style={styles.appointmentInfoText}>
           (00) 0000 0000 | (00) 0 0000 0000

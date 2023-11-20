@@ -26,13 +26,13 @@ export const Home = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttonWhite}
-          onPress={() => navigation.navigate('SignIn')}>
-          <Text style={styles.textButtons}>Consulta Nutrólogo</Text>
+          onPress={() => navigation.navigate('AppointmentScheduling')}>
+          <Text style={styles.textButtons}>Agendamento de consulta</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttonGreen}
-          onPress={() => navigation.navigate('SignUp')}>
-          <Text style={styles.textButtons}>Consulta Dermatologista</Text>
+          onPress={() => navigation.navigate('Update')}>
+          <Text style={styles.textButtons}>Dados cadastrais</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.addressBox}>

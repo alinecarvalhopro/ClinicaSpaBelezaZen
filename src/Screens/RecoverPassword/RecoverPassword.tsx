@@ -35,6 +35,10 @@ export const RecoverPassword = () => {
           })
           .then(() => setEmail(''))
           .catch(error => console.log(error));
+      } else {
+        Alert.alert(
+            'Forneça o e-mail cadastrado para realizar a redefinição de senha.',
+          );
       }
     } catch (error) {
       console.error(error);
@@ -61,7 +65,6 @@ export const RecoverPassword = () => {
           onPress={recoverPassword}>
           <Text style={styles.textRecoverPasswordButton}>Enviar</Text>
         </TouchableOpacity>
-        <Text style={styles.detailText}>ou</Text>
         <TouchableOpacity
           style={styles.loginButton}
           onPress={() => navigation.navigate('SignIn')}>
