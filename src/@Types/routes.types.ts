@@ -6,4 +6,5 @@ type RootStackParamList = {
     Update: undefined;
     SpaMenu: undefined;
     Schedules: undefined;
+    RecoverPassword: undefined;
   };

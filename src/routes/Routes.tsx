@@ -13,6 +13,7 @@ import {SignUp} from '../Screens/SignUp/SignUp';
 import {SpaMenu} from '../Screens/SpaMenu/SpaMenu';
 import {Update} from '../Screens/Update/Update';
 import {Schedules} from '../Screens/Schedules/Schedules';
+import { RecoverPassword } from '../Screens/RecoverPassword/RecoverPassword';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -79,6 +80,7 @@ export const Routes = () => {
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Home" component={MenuTabs} />
+      <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
       {/* <Stack.Screen name="SpaMenu" component={SpaMenu} />
       <Stack.Screen name="Schedules" component={Schedules} /> */}
     </Stack.Navigator>

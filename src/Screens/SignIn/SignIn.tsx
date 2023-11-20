@@ -2,7 +2,14 @@ import {styles} from './style';
 import {Colors} from '../../Styles/Theme/Colors/Colors';
 
 import React, {useState} from 'react';
-import {Text, TouchableOpacity, View, Image, TextInput} from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+  TextInput,
+  Alert,
+} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -67,7 +74,10 @@ export const SignIn = () => {
           onPress={() => navigation.navigate('SignUp')}>
           <Text style={styles.textRegisterButton}>Cadastre-se</Text>
         </TouchableOpacity>
-        <Text style={styles.detailText}>Recurepar a senha</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('RecoverPassword')}>
+          <Text style={styles.detailText}>Recurepar a senha</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

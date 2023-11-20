@@ -9,6 +9,7 @@ import {
   Image,
   TextInput,
   Switch,
+  Alert,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
@@ -22,10 +23,57 @@ export const Update = () => {
   const navigation: NativeStackNavigationProp<RootStackParamList> =
     useNavigation();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isWhatsApp, setIsWhatsApp] = useState(false);
-  const [password, setPassword] = useState('');
+
+  type TUserData = {
+    name?: string;
+    phoneNumber?: string;
+    isWhatsApp?: boolean;
+  };
+
+  const update = async () => {
+    try {
+      const user = firebase.auth().currentUser;
+
+      if (user) {
+        const userDataToUpdate: Partial<TUserData> = {};
+
+        if (name) userDataToUpdate.name = name;
+        if (phoneNumber) userDataToUpdate.phoneNumber = phoneNumber;
+        if (isWhatsApp !== null) userDataToUpdate.isWhatsApp = isWhatsApp;
+
+        if (Object.keys(userDataToUpdate).length > 0) {
+          await firebase
+            .database()
+            .ref(`users/${user.uid}`)
+            .update(userDataToUpdate);
+        }
+        navigation.navigate('Home');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const recoverPassword = () => {
+    try {
+      const user = firebase.auth().currentUser;
+      if (user) {
+        firebase
+          .auth()
+          .sendPasswordResetEmail(user.email!)
+          .then(() => {
+            Alert.alert(
+              'Enviamos um e-mail de redefinição de senha para você.',
+            );
+          })
+          .catch(error => console.log(error));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const logout = async () => {
     try {
@@ -34,6 +82,28 @@ export const Update = () => {
       await AsyncStorage.removeItem('@CLINICASPABELEZAZEN:USERID');
 
       navigation.navigate('SignIn');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteUser = async () => {
+    try {
+      const user = firebase.auth().currentUser;
+
+      if (user) {
+        await firebase.database().ref(`users/${user.uid}`).remove();
+
+        await user
+          .delete()
+          .then(
+            async () =>
+              await AsyncStorage.removeItem('@CLINICASPABELEZAZEN:USERID'),
+          )
+          .then(() => navigation.navigate('SignIn'));
+
+        console.log('Usuário excluído com sucesso!');
+      }
     } catch (error) {
       console.error(error);
     }
@@ -55,12 +125,6 @@ export const Update = () => {
         />
         <TextInput
           style={styles.textInput}
-          placeholder="Digite aqui o seu e-mail"
-          value={email}
-          onChangeText={setEmail}
-        />
-        <TextInput
-          style={styles.textInput}
           placeholder="Digite aqui o seu telefone"
           value={phoneNumber}
           onChangeText={setPhoneNumber}
@@ -73,19 +137,19 @@ export const Update = () => {
             thumbColor={isWhatsApp ? Colors.green100 : Colors.grey50}
           />
         </View>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Digite aqui a sua senha"
-          value={password}
-          onChangeText={setPassword}
-        />
-        <TouchableOpacity style={styles.updateButton}>
-          <Text style={styles.textUpdateButton}>Enviar</Text>
+        <TouchableOpacity style={styles.updateButton} onPress={update}>
+          <Text style={styles.textUpdateButton}>Enviar dados atualizados</Text>
+        </TouchableOpacity>
+        <Text style={styles.title}>Mais opções</Text>
+        <TouchableOpacity
+          style={styles.updatePasswordButton}
+          onPress={recoverPassword}>
+          <Text style={styles.textUpdatePasswordButton}>Redefinir senha</Text>
         </TouchableOpacity>
         <View style={styles.signOutDeleteAccountBox}>
           <TouchableOpacity
             style={styles.signOutDeleteAccountButton}
-            onPress={() => navigation.navigate('SignIn')}>
+            onPress={deleteUser}>
             <Text style={styles.textSignOutDeleteAccountButton}>
               Excluir conta
             </Text>
