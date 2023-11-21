@@ -114,12 +114,12 @@ export const SignUp = () => {
           onChangeText={(text: string) => {
             setPassword(text), setError(null);
           }}
+          secureTextEntry
           isError={!!error}
           errorMessage={error}
         />
         <TouchableOpacity style={styles.registerButton} onPress={signUp}>
           <Text style={styles.textRegisterButton}>
-            {' '}
             {loading ? (
               <ActivityIndicator size={20} color={Colors.white} />
             ) : (

@@ -78,6 +78,7 @@ export const SignIn = () => {
           onChangeText={(text: string) => {
             setPassword(text), setError(null);
           }}
+          secureTextEntry
           isError={!!error}
           errorMessage={error}
         />
