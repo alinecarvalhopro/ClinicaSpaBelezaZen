@@ -35,7 +35,7 @@ export const SignUp = () => {
   const signUp = () => {
     setLoading(true);
 
-    if (!email || !password || !name || phoneNumber) {
+    if (!email || !password || !name || !phoneNumber) {
       Alert.alert('Preencha todos os campos e tente novamente');
       setLoading(false);
       return;
