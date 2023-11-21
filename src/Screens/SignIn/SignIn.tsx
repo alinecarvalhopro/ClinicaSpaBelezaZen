@@ -7,9 +7,10 @@ import {
   TouchableOpacity,
   View,
   Image,
-  TextInput,
   ActivityIndicator,
 } from 'react-native';
+
+import {Input} from '../../components/Input/Input';
 
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -22,12 +23,20 @@ export const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const navigation: NativeStackNavigationProp<RootStackParamList> =
     useNavigation();
 
   const login = async () => {
     setLoading(true);
+
+    if (!email || !password) {
+      setError('Preencha os campos e tente novamente');
+      setLoading(false);
+      return;
+    }
+
     try {
       const userCredential = await firebase
         .auth()
@@ -39,6 +48,7 @@ export const SignIn = () => {
       navigation.navigate('Home');
     } catch (error) {
       console.error(error);
+      setError('Verifique o email e/ou senha e tente novamente.');
     } finally {
       setLoading(false);
       setEmail('');
@@ -53,20 +63,23 @@ export const SignIn = () => {
         source={require('../../assets/images/second-logo.png')}
       />
       <View style={styles.loginBox}>
-        <Text style={styles.title}>Login</Text>
-        <TextInput
-          style={styles.textInput}
+        <Input
           placeholder="Digite aqui o seu e-mail"
-          placeholderTextColor={Colors.grey100}
           value={email}
-          onChangeText={setEmail}
+          onChangeText={(text: string) => {
+            setEmail(text), setError(null);
+          }}
+          isError={!!error}
+          errorMessage={error}
         />
-        <TextInput
-          style={styles.textInput}
+        <Input
           placeholder="Digite aqui a sua senha"
-          placeholderTextColor={Colors.grey100}
           value={password}
-          onChangeText={setPassword}
+          onChangeText={(text: string) => {
+            setPassword(text), setError(null);
+          }}
+          isError={!!error}
+          errorMessage={error}
         />
         <TouchableOpacity style={styles.loginButton} onPress={login}>
           <Text style={styles.textLoginButton}>

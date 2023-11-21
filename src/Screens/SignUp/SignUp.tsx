@@ -7,10 +7,12 @@ import {
   TouchableOpacity,
   View,
   Image,
-  TextInput,
+  Alert,
   Switch,
   ActivityIndicator,
 } from 'react-native';
+
+import {Input} from '../../components/Input/Input';
 
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -28,9 +30,17 @@ export const SignUp = () => {
   const [isWhatsApp, setIsWhatsApp] = useState(false);
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const signUp = () => {
     setLoading(true);
+
+    if (!email || !password || !name || phoneNumber) {
+      Alert.alert('Preencha todos os campos e tente novamente');
+      setLoading(false);
+      return;
+    }
+
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -50,6 +60,7 @@ export const SignUp = () => {
           errorMessage = error.message;
         }
         console.log(errorMessage);
+        Alert.alert(errorMessage!);
       })
       .finally(() => setLoading(false));
   };
@@ -62,26 +73,32 @@ export const SignUp = () => {
       />
       <View style={styles.registerBox}>
         <Text style={styles.title}>Preencha o seu cadastro</Text>
-        <TextInput
-          style={styles.textInput}
+        <Input
           placeholder="Digite aqui o seu nome"
-          placeholderTextColor={Colors.grey100}
           value={name}
-          onChangeText={setName}
+          onChangeText={(text: string) => {
+            setName(text), setError(null);
+          }}
+          isError={!!error}
+          errorMessage={error}
         />
-        <TextInput
-          style={styles.textInput}
+        <Input
           placeholder="Digite aqui o seu e-mail"
-          placeholderTextColor={Colors.grey100}
           value={email}
-          onChangeText={setEmail}
+          onChangeText={(text: string) => {
+            setEmail(text), setError(null);
+          }}
+          isError={!!error}
+          errorMessage={error}
         />
-        <TextInput
-          style={styles.textInput}
+        <Input
           placeholder="Digite aqui o seu telefone"
-          placeholderTextColor={Colors.grey100}
           value={phoneNumber}
-          onChangeText={setPhoneNumber}
+          onChangeText={(text: string) => {
+            setPhoneNumber(text), setError(null);
+          }}
+          isError={!!error}
+          errorMessage={error}
         />
         <View style={styles.switchBox}>
           <Text style={styles.switchLabel}>Este número é de WhatsApp?</Text>
@@ -91,12 +108,14 @@ export const SignUp = () => {
             thumbColor={isWhatsApp ? Colors.green100 : Colors.grey50}
           />
         </View>
-        <TextInput
-          style={styles.textInput}
+        <Input
           placeholder="Digite aqui a sua senha"
-          placeholderTextColor={Colors.grey100}
           value={password}
-          onChangeText={setPassword}
+          onChangeText={(text: string) => {
+            setPassword(text), setError(null);
+          }}
+          isError={!!error}
+          errorMessage={error}
         />
         <TouchableOpacity style={styles.registerButton} onPress={signUp}>
           <Text style={styles.textRegisterButton}>
