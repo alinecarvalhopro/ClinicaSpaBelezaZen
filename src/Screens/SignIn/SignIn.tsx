@@ -8,7 +8,7 @@ import {
   View,
   Image,
   TextInput,
-  Alert,
+  ActivityIndicator,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
@@ -21,11 +21,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigation: NativeStackNavigationProp<RootStackParamList> =
     useNavigation();
 
   const login = async () => {
+    setLoading(true);
     try {
       const userCredential = await firebase
         .auth()
@@ -35,11 +37,12 @@ export const SignIn = () => {
       await AsyncStorage.setItem('@CLINICASPABELEZAZEN:USERID', user.uid);
 
       navigation.navigate('Home');
-
-      setEmail('');
-      setPassword('');
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
+      setEmail('');
+      setPassword('');
     }
   };
 
@@ -66,7 +69,13 @@ export const SignIn = () => {
           onChangeText={setPassword}
         />
         <TouchableOpacity style={styles.loginButton} onPress={login}>
-          <Text style={styles.textLoginButton}>Entrar</Text>
+          <Text style={styles.textLoginButton}>
+            {loading ? (
+              <ActivityIndicator size={20} color={Colors.white} />
+            ) : (
+              'Entrar'
+            )}
+          </Text>
         </TouchableOpacity>
         <Text style={styles.detailText}>Ainda não tem cadastro?</Text>
         <TouchableOpacity

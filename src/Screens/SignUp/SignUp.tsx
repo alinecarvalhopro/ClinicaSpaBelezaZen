@@ -9,6 +9,7 @@ import {
   Image,
   TextInput,
   Switch,
+  ActivityIndicator,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
@@ -26,21 +27,19 @@ export const SignUp = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isWhatsApp, setIsWhatsApp] = useState(false);
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const signUp = async () => {
-    await firebase
+  const signUp = () => {
+    setLoading(true);
+    firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(async userCredential => {
-        await firebase
-          .database()
-          .ref('users')
-          .child(userCredential.user.uid)
-          .set({
-            name: name,
-            phoneNumber: phoneNumber,
-            isWhatsApp: isWhatsApp,
-          });
+      .then(userCredential => {
+        firebase.database().ref('users').child(userCredential.user.uid).set({
+          name: name,
+          phoneNumber: phoneNumber,
+          isWhatsApp: isWhatsApp,
+        });
         navigation.navigate('SignIn');
       })
       .catch(error => {
@@ -51,7 +50,8 @@ export const SignUp = () => {
           errorMessage = error.message;
         }
         console.log(errorMessage);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -99,7 +99,14 @@ export const SignUp = () => {
           onChangeText={setPassword}
         />
         <TouchableOpacity style={styles.registerButton} onPress={signUp}>
-          <Text style={styles.textRegisterButton}>Enviar</Text>
+          <Text style={styles.textRegisterButton}>
+            {' '}
+            {loading ? (
+              <ActivityIndicator size={20} color={Colors.white} />
+            ) : (
+              'Enviar'
+            )}
+          </Text>
         </TouchableOpacity>
         <Text style={styles.detailText}>Já possui cadastro?</Text>
         <TouchableOpacity

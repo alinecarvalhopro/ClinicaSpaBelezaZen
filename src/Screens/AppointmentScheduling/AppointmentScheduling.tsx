@@ -6,16 +6,16 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import { Linking } from 'react-native';
+import {Linking} from 'react-native';
 
 export const AppointmentScheduling = () => {
   const navigation: NativeStackNavigationProp<RootStackParamList> =
     useNavigation();
 
-    const openWhatsApp = () => {
-        const phoneNumber = '5511900000000'; 
-        Linking.openURL(`whatsapp://send?phone=${phoneNumber}`);
-      };
+  const openWhatsApp = () => {
+    const phoneNumber = '5511900000000';
+    Linking.openURL(`whatsapp://send?phone=${phoneNumber}`);
+  };
 
   return (
     <View style={styles.appointmentSchedulingContainer}>
@@ -43,9 +43,14 @@ export const AppointmentScheduling = () => {
           Enquanto isso, para agendamento de consultas, entre em contato conosco
           por telefone ou WhatsApp.
         </Text>
-        <Text style={styles.notificationText}>Estamos ansiosos para atendê-lo em breve!</Text>
+        <Text style={styles.notificationText}>
+          Estamos ansiosos para atendê-lo em breve!
+        </Text>
         <TouchableOpacity onPress={openWhatsApp}>
-          <Image style={styles.whatsAppButton} source={require('../../assets/images/whatsApp.png')} />
+          <Image
+            style={styles.whatsAppButton}
+            source={require('../../assets/images/whatsApp.png')}
+          />
         </TouchableOpacity>
       </View>
     </View>

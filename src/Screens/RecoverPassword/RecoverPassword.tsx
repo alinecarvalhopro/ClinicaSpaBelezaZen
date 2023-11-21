@@ -9,6 +9,8 @@ import {
   Text,
   TouchableOpacity,
   Alert,
+  Keyboard,
+  ActivityIndicator,
 } from 'react-native';
 
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -21,27 +23,28 @@ export const RecoverPassword = () => {
     useNavigation();
 
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const recoverPassword = () => {
+  const recoverPassword = async () => {
+    setLoading(true);
     try {
       if (email) {
-        firebase
-          .auth()
-          .sendPasswordResetEmail(email)
-          .then(() => {
-            Alert.alert(
-              'Enviamos um e-mail de redefinição de senha para você.',
-            );
-          })
-          .then(() => setEmail(''))
-          .catch(error => console.log(error));
+        await firebase.auth().sendPasswordResetEmail(email);
+        Alert.alert('Enviamos um e-mail de redefinição de senha para você.');
+        setEmail('');
+        Keyboard.dismiss();
       } else {
         Alert.alert(
-            'Forneça o e-mail cadastrado para realizar a redefinição de senha.',
-          );
+          'Forneça o e-mail cadastrado para realizar a redefinição de senha.',
+        );
       }
     } catch (error) {
       console.error(error);
+      Alert.alert(
+        'Ocorreu um erro ao enviar o e-mail de redefinição de senha.',
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -63,7 +66,13 @@ export const RecoverPassword = () => {
         <TouchableOpacity
           style={styles.recoverPasswordButton}
           onPress={recoverPassword}>
-          <Text style={styles.textRecoverPasswordButton}>Enviar</Text>
+          <Text style={styles.textRecoverPasswordButton}>
+            {loading ? (
+              <ActivityIndicator size={20} color={Colors.white} />
+            ) : (
+              'Enviar'
+            )}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.loginButton}

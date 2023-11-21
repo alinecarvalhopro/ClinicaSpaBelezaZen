@@ -10,6 +10,7 @@ import {
   TextInput,
   Switch,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
@@ -25,6 +26,9 @@ export const Update = () => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isWhatsApp, setIsWhatsApp] = useState(false);
+  const [loadingUpdate, setLoadingUpdate] = useState(false);
+  const [loadingLogout, setLoadingLogout] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
 
   type TUserData = {
     name?: string;
@@ -33,12 +37,12 @@ export const Update = () => {
   };
 
   const update = async () => {
+    setLoadingUpdate(true);
     try {
       const user = firebase.auth().currentUser;
 
       if (user) {
         const userDataToUpdate: Partial<TUserData> = {};
-
         if (name) userDataToUpdate.name = name;
         if (phoneNumber) userDataToUpdate.phoneNumber = phoneNumber;
         if (isWhatsApp !== null) userDataToUpdate.isWhatsApp = isWhatsApp;
@@ -49,26 +53,23 @@ export const Update = () => {
             .ref(`users/${user.uid}`)
             .update(userDataToUpdate);
         }
-        navigation.navigate('Home');
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoadingUpdate(false);
+      setName('');
+      setPhoneNumber('');
+      setIsWhatsApp(false);
     }
   };
 
-  const recoverPassword = () => {
+  const recoverPassword = async () => {
     try {
       const user = firebase.auth().currentUser;
       if (user) {
-        firebase
-          .auth()
-          .sendPasswordResetEmail(user.email!)
-          .then(() => {
-            Alert.alert(
-              'Enviamos um e-mail de redefinição de senha para você.',
-            );
-          })
-          .catch(error => console.log(error));
+        await firebase.auth().sendPasswordResetEmail(user.email!);
+        Alert.alert('Enviamos um e-mail de redefinição de senha para você.');
       }
     } catch (error) {
       console.error(error);
@@ -76,6 +77,7 @@ export const Update = () => {
   };
 
   const logout = async () => {
+    setLoadingLogout(true);
     try {
       await firebase.auth().signOut();
 
@@ -84,13 +86,15 @@ export const Update = () => {
       navigation.navigate('SignIn');
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoadingLogout(false);
     }
   };
 
   const deleteUser = async () => {
+    setLoadingDelete(true);
     try {
       const user = firebase.auth().currentUser;
-
       if (user) {
         await firebase.database().ref(`users/${user.uid}`).remove();
 
@@ -106,6 +110,8 @@ export const Update = () => {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoadingDelete(false);
     }
   };
 
@@ -138,7 +144,13 @@ export const Update = () => {
           />
         </View>
         <TouchableOpacity style={styles.updateButton} onPress={update}>
-          <Text style={styles.textUpdateButton}>Enviar dados atualizados</Text>
+          <Text style={styles.textUpdateButton}>
+            {loadingUpdate ? (
+              <ActivityIndicator size={20} color={Colors.white} />
+            ) : (
+              'Enviar dados atualizados'
+            )}
+          </Text>
         </TouchableOpacity>
         <Text style={styles.title}>Mais opções</Text>
         <TouchableOpacity
@@ -151,13 +163,23 @@ export const Update = () => {
             style={styles.signOutDeleteAccountButton}
             onPress={deleteUser}>
             <Text style={styles.textSignOutDeleteAccountButton}>
-              Excluir conta
+              {loadingDelete ? (
+                <ActivityIndicator size={20} color={Colors.white} />
+              ) : (
+                'Excluir conta'
+              )}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.signOutDeleteAccountButton}
             onPress={logout}>
-            <Text style={styles.textSignOutDeleteAccountButton}>Sair</Text>
+            <Text style={styles.textSignOutDeleteAccountButton}>
+              {loadingLogout ? (
+                <ActivityIndicator size={20} color={Colors.white} />
+              ) : (
+                'Sair'
+              )}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
