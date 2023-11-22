@@ -20,28 +20,21 @@ Tecnologias utilizadas no desenvolvimento:
 - React Native Vector Icons;
 - Figma
 
+![Captura de tela 2023-11-21 210637](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/fb4d8a67-18da-44c7-9998-0e7ed363f4e3)
 
-![Captura de tela 2023-11-21 210637](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/5182950a-9e9b-44a9-9ec4-7b589bee3f13)
+![Captura de tela 2023-11-21 205831](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/917a770f-0e6c-406f-8665-e6c56404a86e)
 
-![Captura de tela 2023-11-21 205831](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/0d1de42b-93f9-45ac-9052-0cf2615662ee)
+![Captura de tela 2023-11-21 205906](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/85c38677-bf8d-493b-992c-89fd8f16b074)
 
-![Captura de tela 2023-11-21 205906](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/ae4b6dee-f298-49f2-8b2d-a72715bfe9be)
+![Captura de tela 2023-11-21 205934](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/ce467994-1b60-4240-b5eb-dc4345e9a340)
 
-![Captura de tela 2023-11-21 205934](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/089084f2-7957-4786-b699-63f5eaf58354)
+![Captura de tela 2023-11-21 210012](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/d50d3f72-731b-4347-8f25-481fab9a06d0)
 
-![Captura de tela 2023-11-21 210012](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/8aa396a7-6efb-47c9-b647-e964dc0256c8)
+![Captura de tela 2023-11-21 210033](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/121cd8b4-38a4-4b56-95a0-c8b94c1761b5)
 
-![Captura de tela 2023-11-21 210033](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/43b75767-a473-4ef8-b5ae-21fc100b6ec1)
+![Captura de tela 2023-11-21 210417](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/5be76389-d350-46a1-8cc4-c2d6fc2c09b8)
 
-![Captura de tela 2023-11-21 210417](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/5739a1ba-e6db-4640-abe0-87112a6f64bb)
-
-![Captura de tela 2023-11-21 210439](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/d1e5a4c8-c37d-4815-b1ab-b55096ddaf4a)
-
-
-
-
-
-
+![Captura de tela 2023-11-21 210439](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/f1267913-a5a9-49be-a50b-18ffb6c9bb63)
 
 
 
