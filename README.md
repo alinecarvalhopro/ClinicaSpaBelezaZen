@@ -1,3 +1,50 @@
+# Clínica e Spa Beleza Zen 🪷
+
+Este App é um projeto pessoal para aplicativos móveis desenvolvido em React Native e TypeScript, para cadastro, login, recuperação de senha, alteração dos dados cadastrais logout e deleção do usuário. <br/>
+
+Para o CRUD do usuário utilizei o Firebase do Google. Também fiz uso do recurso de recuperação de senha oferecido pela plataforma. Escolhi a modalidade de cadastro por e-mail e senha no Autentication e com o adicional do Realtime Database para os demais dados. <br/>
+
+Nele também utilizei o React Navigator para navegação tanto em Stack quanto em Tab. <br/>
+
+O App também conta com recursos de loading nos botões, máscara de nos inputs de senha, avisos caso ocorra algum erro durante o envio das informações, tudo forma bem intuitiva para garantir uma boa experiência ao usuário. <br/>
+
+Utilizei a temática de uma Clínica e Spa e como em todos os meus projetos pessoais, também cuidei de toda a parte da identidade visual, fazendo todo o planejamento e  prototipagem no Figma para maior fluidez e produtividade durante o desenvolvimento. <br/>
+
+Tecnologias utilizadas no desenvolvimento:
+
+- React Native;
+- TypeScript;
+- Firebase (Autentication e Realtime database);
+- React Navigation;
+- Async Storage;
+- React Native Vector Icons;
+- Figma
+
+
+![Captura de tela 2023-11-21 210637](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/5182950a-9e9b-44a9-9ec4-7b589bee3f13)
+
+![Captura de tela 2023-11-21 205831](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/0d1de42b-93f9-45ac-9052-0cf2615662ee)
+
+![Captura de tela 2023-11-21 205906](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/ae4b6dee-f298-49f2-8b2d-a72715bfe9be)
+
+![Captura de tela 2023-11-21 205934](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/089084f2-7957-4786-b699-63f5eaf58354)
+
+![Captura de tela 2023-11-21 210012](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/8aa396a7-6efb-47c9-b647-e964dc0256c8)
+
+![Captura de tela 2023-11-21 210033](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/43b75767-a473-4ef8-b5ae-21fc100b6ec1)
+
+![Captura de tela 2023-11-21 210417](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/5739a1ba-e6db-4640-abe0-87112a6f64bb)
+
+![Captura de tela 2023-11-21 210439](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/d1e5a4c8-c37d-4815-b1ab-b55096ddaf4a)
+
+
+
+
+
+
+
+
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
