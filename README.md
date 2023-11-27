@@ -20,6 +20,9 @@ Tecnologias utilizadas no desenvolvimento:
 - React Native Vector Icons;
 - Figma
 
+Protótipo da aplicação (Figma):
+- Link: https://www.figma.com/file/CWDBAycE5EgUPCiMGRoG8c/Beleza-Zen?type=design&node-id=0-1&mode=design&t=yTntb3SYRQnvZPd8-0 <br/>
+
 ![Captura de tela 2023-11-21 210637](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/fb4d8a67-18da-44c7-9998-0e7ed363f4e3)
 
 ![Captura de tela 2023-11-21 205831](https://github.com/alinecarvalhopro/ClinicaSpaBelezaZen/assets/118927052/917a770f-0e6c-406f-8665-e6c56404a86e)
