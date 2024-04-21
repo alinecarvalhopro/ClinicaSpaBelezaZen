@@ -8,14 +8,14 @@ import "@react-native-firebase/database"
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCDW17HOopNPxd9RMbR42J1BIoC7sxJcYQ",
-  authDomain: "beleza-zen-app.firebaseapp.com",
-  databaseURL: "https://beleza-zen-app-default-rtdb.firebaseio.com",
-  projectId: "beleza-zen-app",
-  storageBucket: "beleza-zen-app.appspot.com",
-  messagingSenderId: "564856992194",
-  appId: "1:564856992194:web:55d4a7da50237dbd06a65b",
-  measurementId: "G-Z8WH4N6Y84"
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  databaseURL: process.env.DATABASE_URL,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGINGS_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID
 };
 
 // Initialize Firebase
